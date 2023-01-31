@@ -6,41 +6,21 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
+using SWD502_Forms_ClassActivity_21_03_2022.Modules;
 
 namespace SWD502_Forms_ClassActivity_21_03_2022.Controls
 {
-	class DataConnection_Class
+	class DataConnection_Class : DatabaseConnection
 	{
-        //("Data Source=LAPTOP-Q4ENDLRT\\SQLEXPRESS;
-        //Initial Catalog=RetialDB;
-        //Integrated Security=True;
-        //Connect Timeout=30;
-        //Encrypt=False;
-        //TrustServerCertificate=False;
-        //ApplicationIntent=ReadWrite;
-        //MultiSubnetFailover=False");
-        //Data Source=LAPTOP-Q4ENDLRT\SQLEXPRESS;Initial Catalog=CareDB;Integrated Security=True;
-        //Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
         SqlConnection conn;
-        static string host = "LAPTOP-Q4ENDLRT\\SQLEXPRESS";
-        static string database = "CarDB";
-        static string Encrypt = "False";
-        static string Certificate = "False";
-        static string LoginDB = "True";
-        static string Connect = "30";
-        static string Access = "ReadWrite";
-        static string Failover = "False";
-        public static string strProvider = "Data Source=" + host + ";Initial Catalog=" + database + ";Integrated Security=" + LoginDB
-            + ";Connect Timeout=" + Connect + ";Encrypt=" + Encrypt+ ";TrustServerCertificate="+ Certificate 
-            + ";ApplicationIntent="+ Access + ";MultiSubnetFailover="+ Failover;
+       
         public bool Open()
         {
             try
             {
-                //strProvider = "server=" + host + ";Database=" + database + ";User ID=" + userDB + ";Password=" + password;
-                SqlConnection sqlConnection = new SqlConnection(strProvider);
+                SqlConnection sqlConnection = new SqlConnection(connectionString());
                 sqlConnection.Open();
-                conn = new SqlConnection(strProvider);
+                conn = new SqlConnection(connectionString());
                 conn.Open();
                 return true;
             }
@@ -57,7 +37,7 @@ namespace SWD502_Forms_ClassActivity_21_03_2022.Controls
         }
         public string connectionString()
         {
-            return strProvider;
+            return getstrProvider();
         }
 
         public DataSet ExecuteDataSet(string sql)

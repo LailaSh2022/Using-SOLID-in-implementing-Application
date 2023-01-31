@@ -66,6 +66,7 @@
     <Compile Include="LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\DatabaseConnection.cs" />
     <Compile Include="Modules\User_Info_Class.cs" />
     <Compile Include="Modules\User_Login_Class.cs" />
     <Compile Include="Modules\User_Register_Class.cs" />
